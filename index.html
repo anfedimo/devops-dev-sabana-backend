@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Nequi Demo</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/static/nequi-logo.png" />
+  <style>
+    .container {
+        display: flex;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        background: #fafbfc;
+        border-radius: 16px;
+        box-shadow: 0 4px 16px #0001;
+        padding: 32px;
+        max-width: 600px;
+        margin: 40px auto;
+    }
+    .message {
+        flex: 1;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    .logo {
+        width: 120px;
+        margin-left: 30px;
+        border-radius: 16px;
+        background: white;
+        box-shadow: 0 2px 8px #0001;
+    }
+    .links-section {
+        max-width: 600px;
+        margin: 0 auto;
+        margin-top: 20px;
+        font-size: 1.05rem;
+    }
+    .docs-link, .redoc-link {
+        display: block;
+        text-align: center;
+        margin-top: 16px;
+        font-size: 1.1rem;
+        text-decoration: none;
+        color: #a200ff;
+        font-weight: 600;
+    }
+    .docs-link:hover, .redoc-link:hover {
+        text-decoration: underline;
+    }
+    .desc {
+        margin-top: 36px;
+        text-align: center;
+        color: #444;
+        font-size: 1.1rem;
+        background: #f6f3fa;
+        padding: 18px 28px;
+        border-radius: 12px;
+    }
+    body {
+        background: #f2f4f7;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="message">
+    Hola Soy Andres Fernando Diaz
+  </div>
+  <img src="/static/nequi.png" class="logo" alt="Nequi Logo" />
+</div>
+<div class="links-section">
+  <a href="/docs" class="docs-link">Ir a la documentación interactiva de la API (Swagger UI)</a>
+  <div style="text-align:center; color:#555; font-size:0.97rem; margin-top:2px;">
+    <b>/docs</b>: Navega, prueba y explora todos los endpoints de la API NequiDev.
+  </div>
+
+  <a href="/redoc" class="redoc-link">Ver documentación de la API en formato Redoc</a>
+  <div style="text-align:center; color:#555; font-size:0.97rem; margin-top:2px;">
+    <b>/redoc</b>: Visualiza la documentación OpenAPI de manera estructurada y elegante.
+  </div>
+</div>
+<div class="desc">
+  <strong>¿Para qué es esta API?</strong><br>
+  La API <b>NequiDev</b> te permite crear, listar y gestionar retos de educación financiera para estudiantes universitarios.<br>
+  Accede a los endpoints para consultar retos, agregar nuevos desafíos y monitorear el estado del sistema.
+</div>
+</body>
+</html>
