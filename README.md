@@ -1,6 +1,6 @@
 # API de Retos Sabana 🚀
 
-API desarrollada con FastAPI para gestionar retos de programación con diferentes niveles de dificultad.
+API desarrollada con FastAPI para gestionar retos de programación con diferentes niveles de dificultad..
 
 Esta arquitectura proporciona una base sólida y flexible para experimentar con retos de educación financiera, permitiendo a los equipos de sabana adoptar rápidamente prácticas modernas de desarrollo, automatización, calidad y seguridad, y escalar la solución según las necesidades reales del producto y del equipo..
 
@@ -194,3 +194,4 @@ El archivo principal main.py contiene:
 
 
 ## Arquitectura de Software — Universidad de La Sabana — Grupo 14 — 2025
+
