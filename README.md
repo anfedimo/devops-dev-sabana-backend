@@ -92,7 +92,7 @@ Ofrece documentación automática y clara (Swagger UI y Redoc) para desarrollado
    ```
 2. **Ejecutar el contenedor:**
    ```bash
-  docker run -p 9000:9000 sabana-api
+    docker run -p 9000:9000 sabana-api
     ```
    **Opciones útiles:**
 -  -d para ejecutar en segundo plano
