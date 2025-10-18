@@ -13,8 +13,8 @@ devops-dev-sabana-backend/
 │   ├── routers/
 │   │   └── challenges.py           # Rutas y lógica de negocio de los retos
 │   ├── static/                     # Archivos estáticos (imágenes, favicon)
-│   │   ├── nequi.png
-│   │   └── nequi-logo.png
+│   │   ├── sabana.png
+│   │   └── sabana-logo.png
 │   ├── templates/
 │   │   └── index.html              # Plantilla HTML para el landing page
 │   ├── config.py                   # Configuración general del proyecto
