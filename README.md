@@ -2,7 +2,7 @@
 
 API desarrollada con FastAPI para gestionar retos de programación con diferentes niveles de dificultad.
 
-Esta arquitectura proporciona una base sólida y flexible para experimentar con retos de educación financiera, permitiendo a los equipos de sabana adoptar rápidamente prácticas modernas de desarrollo, automatización, calidad y seguridad, y escalar la solución según las necesidades reales del producto y del equipo.
+Esta arquitectura proporciona una base sólida y flexible para experimentar con retos de educación financiera, permitiendo a los equipos de sabana adoptar rápidamente prácticas modernas de desarrollo, automatización, calidad y seguridad, y escalar la solución según las necesidades reales del producto y del equipo..
 
 ## 🛠️ Arquitectura del Proyecto
 
@@ -191,5 +191,6 @@ El archivo principal main.py contiene:
 4. Almacenamiento:
 
     - Lista en memoria challenges que persiste durante la ejecución
+
 
 ## Arquitectura de Software — Universidad de La Sabana — Grupo 14 — 2025
