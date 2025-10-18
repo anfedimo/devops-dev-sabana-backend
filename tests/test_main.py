@@ -15,7 +15,7 @@ def client():
 def test_read_root(client):
     response = client.get("/")
     assert response.status_code == 200
-    assert "Hola Soy Andres Fernando Diaz" in response.text
+    assert "Somos el grupo 14 de Arquitectura de Software" in response.text
 
 # Test para el health check
 def test_health_check(client):
