@@ -6,7 +6,7 @@ load_dotenv()
 class Settings:
     @property
     def PROJECT_NAME(self):
-        return "NequiDev API"
+        return "sabana API"
 
     @property
     def VERSION(self):

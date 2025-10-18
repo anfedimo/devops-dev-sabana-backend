@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Settings:
-    PROJECT_NAME: str = "NequiDev API"
+    PROJECT_NAME: str = "sabana API"
     VERSION: str = "1.0.0"
     API_PREFIX: str = ""
     DEBUG: bool = os.getenv("DEBUG", "False").lower() == "true"

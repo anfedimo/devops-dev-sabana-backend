@@ -26,7 +26,7 @@ TEMPLATES_DIR = str((Path(__file__).parent.parent / "templates").resolve())
 templates = Jinja2Templates(directory=TEMPLATES_DIR)
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("nequidev")
+logger = logging.getLogger("sabana")
 
 class DifficultyLevel(str, Enum):
     BASICO = "básico"

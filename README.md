@@ -1,13 +1,13 @@
-# API de Retos NequiDev 🚀
+# API de Retos Sabana 🚀
 
 API desarrollada con FastAPI para gestionar retos de programación con diferentes niveles de dificultad.
 
-Esta arquitectura proporciona una base sólida y flexible para experimentar con retos de educación financiera, permitiendo a los equipos de NequiDev adoptar rápidamente prácticas modernas de desarrollo, automatización, calidad y seguridad, y escalar la solución según las necesidades reales del producto y del equipo.
+Esta arquitectura proporciona una base sólida y flexible para experimentar con retos de educación financiera, permitiendo a los equipos de sabana adoptar rápidamente prácticas modernas de desarrollo, automatización, calidad y seguridad, y escalar la solución según las necesidades reales del producto y del equipo.
 
 ## 🛠️ Arquitectura del Proyecto
 
 ```text
-devops-dev-nequidev-backend/
+devops-dev-sabana-backend/
 │
 ├── app/
 │   ├── routers/
@@ -36,7 +36,7 @@ devops-dev-nequidev-backend/
 ## 📋 Estructura del Proyecto
 
 - API lista para experimentación:
-Expone endpoints para publicar, consultar y gestionar retos de educación financiera, alineándose con el propósito de la iniciativa NequiDev.
+Expone endpoints para publicar, consultar y gestionar retos de educación financiera, alineándose con el propósito de la iniciativa sabana.
 
 
 - Arquitectura modular y escalable:
@@ -88,15 +88,15 @@ Ofrece documentación automática y clara (Swagger UI y Redoc) para desarrollado
 ##  🐳 Ejecución con Docker
 1. **Construir la imagen:**
    ```bash
-   docker build -t nequidev-api .
+   docker build -t sabana-api .
    ```
 2. **Ejecutar el contenedor:**
    ```bash
-  docker run -p 9000:9000 nequidev-api
+  docker run -p 9000:9000 sabana-api
     ```
    **Opciones útiles:**
 -  -d para ejecutar en segundo plano
-- --name nequidev para nombrar el contenedor
+- --name sabana para nombrar el contenedor
 
 ##  🧪 Ejecución de Tests
 1. **Tests normales:**

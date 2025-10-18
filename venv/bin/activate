@@ -35,7 +35,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/andresdiaz/Downloads/test/delete/devops-dev-nequidev-backend/venv"
+VIRTUAL_ENV="/Users/andresdiaz/Downloads/test/delete/devops-dev-sabana-backend/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
