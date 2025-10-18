@@ -192,9 +192,4 @@ El archivo principal main.py contiene:
 
     - Lista en memoria challenges que persiste durante la ejecución
 
-## Contribución
-
-Si encuentras útil este repositorio, aquí tienes cómo puedes ayudar:
-
-1. Envíe una solicitud de fusión con sus increíbles nuevas características y correcciones de errores
-2. Espera una Coronita 🍺 te la mereces.
+## Arquitectura de Software — Universidad de La Sabana — Grupo 14 — 2025
