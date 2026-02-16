@@ -44,5 +44,5 @@ jobs:
     steps:
       - name: Trigger Remote Jenkins Build
         run: |
-          curl -L -X POST "https://uniaxially-corrosional-timmy.ngrok-free.dev/job/sabana/job/sabana-devops-backend/build?token=SABANA_2026" \
+          curl -L -X POST "https://uniaxially-corrosional-timmy.ngrok-free.dev/job/sabana/job/sabana-devops-backend/job/main/build?token=SABANA_2026" \
           --user "admin:${{ secrets.TRIGGER_U3 }}"

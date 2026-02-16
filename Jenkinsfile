@@ -21,26 +21,48 @@ spec:
 '''
         }
     }
+    environment {
+        DOCKERHUB_USER = 'anfedimo'
+        APP_NAME = 'devops-dev-sabana-backend'
+        IMAGE_TAG = "${DOCKERHUB_USER}/${APP_NAME}:${BUILD_NUMBER}"
+    }
     stages {
-        // ... (Tus etapas anteriores de Build y Push deben ir aquí) ...
-
+        stage('Docker Build') {
+            steps {
+                container('docker') {
+                    sh "docker build -t ${IMAGE_TAG} ."
+                }
+            }
+        }
+        stage('Push to DockerHub') {
+            steps {
+                container('docker') {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', 
+                                                     usernameVariable: 'USER', 
+                                                     passwordVariable: 'PASS')]) {
+                        sh "echo ${PASS} | docker login -u ${USER} --password-stdin"
+                        sh "docker push ${IMAGE_TAG}"
+                        sh "docker tag ${IMAGE_TAG} ${DOCKERHUB_USER}/${APP_NAME}:latest"
+                        sh "docker push ${DOCKERHUB_USER}/${APP_NAME}:latest"
+                    }
+                }
+            }
+        }
         stage('GitOps Sync Notification') {
             steps {
                 container('docker') {
-                    // Clonar repo de infraestructura
+                    [cite_start]// Clonar repo de infraestructura [cite: 3]
                     sh "git clone https://github.com/anfedimo/kubernetes-u-sabana.git"
-                    
                     dir('kubernetes-u-sabana') {
-                        // Actualizar el tag de la imagen en values.yaml [cite: 2]
+                        [cite_start]// Actualizar el tag en values.yaml [cite: 4]
                         sh "sed -i 's/tag: .*/tag: \"${BUILD_NUMBER}\"/' charts/sabana-api/values.yaml"
-                        
-                        // Configurar git y subir cambios usando credenciales [cite: 3, 5]
+                        [cite_start]// Subir cambios con credenciales de GitHub [cite: 5, 6]
                         withCredentials([usernamePassword(credentialsId: 'github-creds-sabana', 
                                                          usernameVariable: 'GIT_USER', 
                                                          passwordVariable: 'GIT_TOKEN')]) {
                             sh "git config user.email 'jenkins@sabana.edu.co'"
-                            sh "git config user.name 'Jenkins Bot'" [cite: 4]
-                            sh "git add charts/sabana-api/values.yaml"
+                            [cite_start]sh "git config user.name 'Jenkins Bot'" [cite: 6]
+                            [cite_start]sh "git add charts/sabana-api/values.yaml" [cite: 7]
                             sh "git commit -m 'GitOps: Update image to build ${BUILD_NUMBER}'"
                             sh "git push https://${GIT_TOKEN}@github.com/anfedimo/kubernetes-u-sabana.git main"
                         }
