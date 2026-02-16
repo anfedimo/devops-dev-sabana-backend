@@ -9,6 +9,10 @@ Esta arquitectura proporciona una base sólida y flexible para experimentar con 
 ```text
 devops-dev-sabana-backend/
 │
+├── .github/
+│   └── workflows/
+│       └── ci-sabana.yml           # Pipeline de Integración Continua (GitHub Actions)
+├── Jenkinsfile                     # Pipeline de Entrega Continua (Jenkins en Kubernetes)
 ├── app/
 │   ├── routers/
 │   │   └── challenges.py           # Rutas y lógica de negocio de los retos
@@ -58,6 +62,9 @@ Facilita la integración de autenticación, control de acceso y prácticas de se
 - Documentación interactiva:
 Ofrece documentación automática y clara (Swagger UI y Redoc) para desarrolladores.
 
+- Validación de Calidad (CI): Orquestador en la nube encargado de ejecutar la suite de pruebas unitarias (pytest), verificar la cobertura de código y realizar el análisis estático de seguridad (SAST) mediante SonarCloud. Una vez validado, emite la señal de disparo (Trigger) hacia el entorno local.
+
+- Despliegue y Distribución (CD): Orquestador local ejecutado sobre Minikube. Gestiona agentes dinámicos en Kubernetes para la construcción inmutable de la imagen Docker y su posterior publicación en el registro oficial de Docker Hub tras la aprobación del Quality Gate.
 
 ## 🚀 Cómo Ejecutar
 
