@@ -50,22 +50,19 @@ spec:
         }
         stage('GitOps Sync Notification') {
             steps {
-                container('docker') {
-                    [cite_start]// Clonar repo de infraestructura [cite: 3]
-                    sh "git clone https://github.com/anfedimo/kubernetes-u-sabana.git"
-                    dir('kubernetes-u-sabana') {
-                        [cite_start]// Actualizar el tag en values.yaml [cite: 4]
-                        sh "sed -i 's/tag: .*/tag: \"${BUILD_NUMBER}\"/' charts/sabana-api/values.yaml"
-                        [cite_start]// Subir cambios con credenciales de GitHub [cite: 5, 6]
-                        withCredentials([usernamePassword(credentialsId: 'github-creds-sabana', 
-                                                         usernameVariable: 'GIT_USER', 
-                                                         passwordVariable: 'GIT_TOKEN')]) {
-                            sh "git config user.email 'jenkins@sabana.edu.co'"
-                            [cite_start]sh "git config user.name 'Jenkins Bot'" [cite: 6]
-                            [cite_start]sh "git add charts/sabana-api/values.yaml" [cite: 7]
-                            sh "git commit -m 'GitOps: Update image to build ${BUILD_NUMBER}'"
-                            sh "git push https://${GIT_TOKEN}@github.com/anfedimo/kubernetes-u-sabana.git main"
-                        }
+                // NOTA: Ejecutamos fuera de 'container(docker)' para usar el git del agente base
+                sh "git clone https://github.com/anfedimo/kubernetes-u-sabana.git"
+                dir('kubernetes-u-sabana') {
+                    sh "sed -i 's/tag: .*/tag: \"${BUILD_NUMBER}\"/' charts/sabana-api/values.yaml"
+                    
+                    withCredentials([usernamePassword(credentialsId: 'github-creds-sabana', 
+                                                     usernameVariable: 'GIT_USER', 
+                                                     passwordVariable: 'GIT_TOKEN')]) {
+                        sh "git config user.email 'jenkins@sabana.edu.co'"
+                        sh "git config user.name 'Jenkins Bot'"
+                        sh "git add charts/sabana-api/values.yaml"
+                        sh "git commit -m 'GitOps: Update image to build ${BUILD_NUMBER}'"
+                        sh "git push https://${GIT_TOKEN}@github.com/anfedimo/kubernetes-u-sabana.git main"
                     }
                 }
             }
