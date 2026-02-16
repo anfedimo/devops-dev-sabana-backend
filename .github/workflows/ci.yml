@@ -1,6 +1,5 @@
 name: Python CI - SonarCloud
 
-# Esta sección 'on' es vital para que arranque el pipeline
 on:
   push:
     branches: [ "main", "master" ]
@@ -10,38 +9,40 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
-
     steps:
-      # 1. Checkout del código (fetch-depth: 0 es obligatorio para Sonar)
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      # 2. Configurar Python 3.11.9
       - name: Set up Python 3.11.9
         uses: actions/setup-python@v4
         with:
           python-version: '3.11.9' 
           cache: 'pip'
 
-      # 3. Instalar dependencias
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          # Instalamos pytest y coverage explícitamente
           pip install pytest pytest-cov
 
-      # 4. Ejecutar Pruebas y Generar Reporte XML
       - name: Run Tests
         run: |
-          # --cov=app asume que tu código fuente está en la carpeta 'app'
           pytest --cov=app --cov-report=xml --cov-report=term
 
-      # 5. Análisis de SonarCloud
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Lo pone GitHub
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  # Job de Entrega Continua (CD)
+  trigger-jenkins-cd:
+    needs: build-and-test # Solo si el CI con SonarCloud fue exitoso
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Remote Jenkins Build
+        run: |
+          curl -L -X POST "https://uniaxially-corrosional-timmy.ngrok-free.dev/job/devops-backend/build?token=SABANA_2026" \
+          --user "admin:${{ secrets.TRIGGER_U3 }}"
