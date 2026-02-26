@@ -199,6 +199,24 @@ El archivo principal main.py contiene:
 
     - Lista en memoria challenges que persiste durante la ejecución
 
+## 🔄 Flujo CI/CD (Integración y Entrega Continua)
+
+El proyecto cuenta con dos pipelines automatizados que garantizan la calidad del código y su despliegue inmutable:
+
+### 1. Integración Continua (CI) con GitHub Actions
+El archivo `.github/workflows/ci-sabana.yml` se dispara automáticamente ante cada `push` o `pull_request` a la rama `main`.
+* **Checkout & Setup:** Prepara el entorno Ubuntu e instala Python 3.11.9.
+* **Dependencias & Testing:** Instala las librerías necesarias y ejecuta pruebas unitarias usando `pytest` con reporte de cobertura.
+* **Análisis de Calidad:** Envía los resultados a SonarCloud para evaluar vulnerabilidades y deuda técnica.
+* **Trigger CD:** Si todas las etapas anteriores son exitosas, realiza una petición webhook a Jenkins para iniciar el despliegue.
+
+*(Insertar aquí captura de pantalla de GitHub Actions en verde)*
+
+### 2. Entrega Continua (CD) con Jenkins
+El archivo `Jenkinsfile` es orquestado localmente usando agentes dinámicos en Kubernetes. Consta de los siguientes stages:
+* **Docker Build:** Utiliza un contenedor con el cliente de Docker anidado para construir la imagen de la API (`sabana-api`) basándose en el `Dockerfile`.
+* **Push to DockerHub:** Autentica de forma segura y sube la imagen al registro público etiquetada con el `BUILD_NUMBER` y `latest`.
+* **GitOps Sync:** Clona el repositorio de manifiestos de Kubernetes y actualiza dinámicamente el `values.yaml` del chart de Helm con el nuevo tag de la imagen, disparando la actualización en el clúster.
 
 ## Arquitectura de Software — Universidad de La Sabana — Grupo 14 — 2025
 
