@@ -248,7 +248,7 @@ Un 100% de cobertura de sentencias (*Statement Coverage*) y ramificaciones (*Bra
 **Evidencia de Integración Continua y Quality Gate:**
 ![Evidencia SonarCloud Quality Gate](./app/static/sonar_quality_gate.png)
 
-## Arquitectura de Software — Universidad de La Sabana]\ — 2025
+## Arquitectura de Software — Universidad de La Sabana]\ — 2026
 
 
 
