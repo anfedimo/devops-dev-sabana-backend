@@ -57,3 +57,29 @@ def test_invalid_difficulty(client):
     assert response.status_code == 422  # Unprocessable Entity
     assert "difficulty" in response.text
 
+def test_create_challenge_successfully(client):
+    """
+    Escenario: Creación exitosa de un nuevo reto financiero.
+    Dado (Given/Arrange): Un payload válido con título, descripción y dificultad permitida.
+    Cuando (When/Act): Se envía una petición POST al endpoint '/challenges'.
+    Entonces (Then/Assert): El sistema retorna un código 201 y el reto se almacena correctamente.
+    """
+    # 1. Arrange (Dado / Given)
+    valid_payload = {
+        "title": "Fondo de Emergencia",
+        "description": "Ahorrar 3 meses de gastos fijos",
+        "difficulty": "avanzado"
+    }
+
+    # 2. Act (Cuando / When)
+    response = client.post("/challenges", json=valid_payload)
+
+    # 3. Assert (Entonces / Then)
+    assert response.status_code == 201, "El código de estado debe ser 201 Created"
+
+    response_data = response.json()
+    assert response_data["title"] == valid_payload["title"], "El título debe coincidir con el payload"
+
+    # Verificación de estado en el sistema (evitar falsos positivos)
+    verify_response = client.get("/challenges")
+    assert any(ch["title"] == valid_payload["title"] for ch in verify_response.json()), "El reto debe persistir en el sistema"

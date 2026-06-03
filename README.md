@@ -218,7 +218,37 @@ El archivo `Jenkinsfile` es orquestado localmente usando agentes dinámicos en K
 * **Push to DockerHub:** Autentica de forma segura y sube la imagen al registro público etiquetada con el `BUILD_NUMBER` y `latest`.
 * **GitOps Sync:** Clona el repositorio de manifiestos de Kubernetes y actualiza dinámicamente el `values.yaml` del chart de Helm con el nuevo tag de la imagen, disparando la actualización en el clúster.
 
-## Arquitectura de Software — Universidad de La Sabana — Grupo 14 — 2025
+## 🧪 Aseguramiento de la Calidad y Automatización de Pruebas
+
+Para garantizar la confiabilidad, mantenibilidad y el correcto funcionamiento del sistema, este proyecto adopta rigurosas prácticas de ingeniería de software para la verificación y validación, cumpliendo con los estándares de la Maestría en Arquitectura de Software.
+
+### Metodología de Desarrollo Dirigido por Pruebas (TDD)
+El desarrollo de los componentes (modelos, rutas y lógica de negocio) se guió por el ciclo de Desarrollo Dirigido por Pruebas (TDD). Esta práctica, fundamentada por autores clásicos de la ingeniería de software (Beck, 2003), asegura que el código sea testeable desde su concepción mediante iteraciones cortas:
+1. **Red:** Escritura de la prueba unitaria (fallida) definiendo el comportamiento esperado y los criterios de aceptación.
+2. **Green:** Implementación del código funcional mínimo necesario para superar la aserción de la prueba.
+3. **Refactor:** Optimización de la lógica del código garantizando el cumplimiento del *Quality Gate* y la mitigación de deuda técnica, manteniendo las pruebas en estado exitoso.
+
+Además, el diseño de los casos de prueba automatizados implementa el patrón de arquitectura de pruebas **AAA (Arrange, Act, Assert)** y el framework de comportamiento explícito **Given-When-Then**, asegurando que los *scripts* actúen como documentación viva, estructurada y comprensible del sistema.
+
+### Matriz de Trazabilidad
+A continuación, se presenta la trazabilidad directa entre los componentes de la arquitectura, los requerimientos evaluados y los escenarios de prueba:
+
+| ID | Componente Base | Funcionalidad Evaluada | Framework | Estado | Cobertura |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **TU-01** | `models.py` | Instanciación y validación estricta de tipos Pydantic (control de campos faltantes y tipado erróneo). | Pytest | ✅ Exitoso | 100% |
+| **TU-02** | `main.py` | Configuración de inicialización, Health Check y validación de carga de recursos estáticos. | Pytest | ✅ Exitoso | 100% |
+| **TU-03** | `routers/challenges.py` | CRUD lógico de retos financieros (Creación, Listado, y Manejo de Excepciones HTTP 422). | Pytest / TestClient | ✅ Exitoso | 100% |
+
+### Métricas de Cobertura y Evidencias de Ejecución
+El proyecto cuenta con un **100% de cobertura de código (Coverage)**, superando ampliamente el umbral mínimo exigido del 75% para estándares de calidad *Enterprise*. El análisis de código estático (SAST) y la medición exhaustiva se integran de forma continua a través de **SonarCloud**.
+
+**Interpretación Analítica:**
+Un 100% de cobertura de sentencias (*Statement Coverage*) y ramificaciones (*Branch Coverage*) mitiga drásticamente los riesgos de regresión durante la integración continua. Esto garantiza que tanto los flujos principales (caminos felices) como los flujos de error (validaciones de Pydantic y *DifficultyLevel*) estén protegidos estructuralmente ante futuras refactorizaciones.
+
+**Evidencia de Integración Continua y Quality Gate:**
+![Evidencia SonarCloud Quality Gate](./app/static/sonar_quality_gate.png)
+
+## Arquitectura de Software — Universidad de La Sabana]\ — 2025
 
 
 
